@@ -1,8 +1,13 @@
 import Vue from 'vue';
-import Router from 'vue-router';
-import Home from './views/Home.vue';
+import Router, { NavigationGuard } from 'vue-router';
+import QuestionList from './views/QuestionList.vue';
+import { db } from 'baqend/realtime';
 
 Vue.use(Router);
+
+const dbReady: NavigationGuard = (to, from, next) => {
+  db.ready(() => next());
+};
 
 export default new Router({
   mode: 'history',
@@ -10,16 +15,20 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'questionList',
+      component: QuestionList,
+      beforeEnter: dbReady,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      path: '/question/:key',
+      name: 'questionDetails',
+      component: () => import(/* webpackChunkName: "questionDetails" */ './views/QuestionDetails.vue'),
+      beforeEnter: dbReady,
+    },
+    {
+      path: '/ask',
+      name: 'questionDetails',
+      component: () => import(/* webpackChunkName: "questionDetails" */ './views/Ask.vue'),
     },
   ],
 });

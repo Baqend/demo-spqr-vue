@@ -1,31 +1,54 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div>
+    <div class="app-header">
+      <div class="container app-nav">
+        <img src="./assets/logo.png" class="app-logo" alt="logo" />
+        <router-link to="/">Top</router-link>
+        <router-link to="/ask">Ask</router-link>
+      </div>
     </div>
-    <router-view/>
+    <div class="container">
+      <div class="app-content">
+        <router-view/>
+      </div>
+    </div>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
+body {
+  background: #f6f6f6;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.container {
+  margin: 0 auto;
+  max-width: 768px;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.app-header {
+  background: #333;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.app-nav > * {
+  padding: 16px;
+  color: white;
+  text-decoration: none;
+}
+
+.app-logo {
+  height: 32px;
+}
+
+.app-content {
+  padding: 16px;
 }
 </style>
