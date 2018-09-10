@@ -22,12 +22,13 @@ import { model } from 'baqend';
 @Component
 export default class Question extends Vue {
 
-  @Prop(Object) private question!: model.Question;
+  @Prop(Object) public question!: model.Question;
 
-  private async upVote() {
-    this.question.upvotes++;
-    await this.question.ready();
-    this.question = await this.question.save();
+  public async upVote() {
+    await this.question
+      .partialUpdate()
+      .increment('upvotes')
+      .execute();
   }
 
 }
