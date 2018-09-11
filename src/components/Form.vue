@@ -1,36 +1,42 @@
 <template>
-  <div class="form">
+  <form @submit.prevent="doSubmit">
     <textarea
-        :bind="text"
+        v-model="text"
         class="input"
         placeholder="Your Text"
         name="text"
     ></textarea>
     <div class="row">
       <input
-          :bind="author"
+          v-model="author"
           class="input"
           placeholder="Name"
           name="author"
       />
       <button>Submit</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Form extends Vue {
 
+  @Prop(Function) public onSubmit!: (data: { author: string, text: string }) => void;
+
   public text: string = '';
   public author: string = '';
+
+  public doSubmit() {
+    this.onSubmit({ author: this.author, text: this.text });
+  }
 
 }
 </script>
 <style scoped>
-.form {
+form {
   display: flex;
   flex-direction: column;
 }

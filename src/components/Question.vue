@@ -2,7 +2,7 @@
   <div class="question">
 
     <div class="upvotes" @click="upVote">
-      {{ question.upvotes }}
+      {{ question.upvotes || 0 }}
     </div>
 
     <div class="content">
