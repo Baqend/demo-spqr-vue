@@ -5,8 +5,6 @@ import { db } from 'baqend/realtime';
 
 Vue.config.productionTip = false;
 
-db.connect('techcamp18', true);
-
 new Vue({
   router,
   render: (h) => h(App),

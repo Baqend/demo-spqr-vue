@@ -4,6 +4,7 @@ import QuestionList from './views/QuestionList.vue';
 import { db } from 'baqend/realtime';
 
 Vue.use(Router);
+db.connect('techcamp18', true);
 
 const dbReady: NavigationGuard = (to, from, next) => {
   db.ready(() => next());
