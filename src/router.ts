@@ -27,7 +27,7 @@ export default new Router({
     },
     {
       path: '/ask',
-      name: 'questionDetails',
+      name: 'ask',
       component: () => import(/* webpackChunkName: "ask" */ './views/Ask.vue'),
     },
   ],
