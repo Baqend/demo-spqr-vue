@@ -22,6 +22,7 @@ export default class QuestionList extends Vue {
   private async created() {
     db.Question
       .find()
+      .descending('upvotes')
       .resultStream()
       .subscribe((questions) => {
         this.questions = questions;
